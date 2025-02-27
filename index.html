@@ -2,127 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sliding Boxes with Stroke</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      flex-direction: column;
-    }
-    .buttons {
-      margin-bottom: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
-    .button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    .button:hover {
-      background-color: #0056b3;
-    }
-    .box {
-      width: 100px;
-      height: 100px;
-      position: fixed;
-      top: -120px; /* Initially above the viewport */
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 10px;
-      opacity: 0;
-      transition: transform 1s ease, opacity 1s ease, background-color 0.5s ease, border 0.5s ease;
-    }
-    .box.visible {
-      opacity: 1;
-      transform: translate(-50%, 50vh);
-      background-color: transparent;
-      border: 3px solid currentColor;
-    }
-    .box.filled {
-      background-color: currentColor; /* Use current text color */
-      border: none;
-    }
-    #box1 {
-      color: #28a745; /* Green */
-    }
-    #box2 {
-      color: #dc3545; /* Red */
-    }
-    #box3 {
-      color: #ffc107; /* Yellow */
-    }
-    #box4 {
-      color: #17a2b8; /* Cyan */
-    }
-    #box5 {
-      color: #6f42c1; /* Purple */
-    }
-    #box6 {
-      color: #fd7e14; /* Orange */
-    }
-    #box7 {
-      color: #20c997; /* Teal */
-    }
-  </style>
+  <title>TSA3 - Machine Learning</title>
+  <link rel="stylesheet" href="Assets/css/style.css">
 </head>
 <body>
-  <div class="buttons">
-    <button class="button" onclick="showBox('box1')">Show Box 1</button>
-    <button class="button" onclick="showBox('box2')">Show Box 2</button>
-    <button class="button" onclick="showBox('box3')">Show Box 3</button>
-    <button class="button" onclick="showBox('box4')">Show Box 4</button>
-    <button class="button" onclick="showBox('box5')">Show Box 5</button>
-    <button class="button" onclick="showBox('box6')">Show Box 6</button>
-    <button class="button" onclick="showBox('box7')">Show Box 7</button>
+  <div class="container">
+    <div class="calculator">
+      <input type="text" placeholder="0" id="ot">
+      <button onclick="clr()">CLR</button>
+      <button onclick="del()">DEL</button>
+      <button onclick="display('%')">%</button>
+      <button onclick="display('/')">/</button>
+      <button onclick="display('7')">7</button>
+      <button onclick="display('8')">8</button>
+      <button onclick="display('9')">9</button>
+      <button onclick="display('*')">*</button>
+      <button onclick="display('4')">4</button>
+      <button onclick="display('5')">5</button>
+      <button onclick="display('6')">6</button>
+      <button onclick="display('-')">-</button>
+      <button onclick="display('1')">1</button>
+      <button onclick="display('2')">2</button>
+      <button onclick="display('3')">3</button>
+      <button onclick="display('+')">+</button>
+      <button onclick="display('.')">.</button>
+      <button onclick="display('0')">0</button>
+      <button onclick="calculate()" class="equal">=</button>
+    </div>
   </div>
-  <div class="box" id="box1"></div>
-  <div class="box" id="box2"></div>
-  <div class="box" id="box3"></div>
-  <div class="box" id="box4"></div>
-  <div class="box" id="box5"></div>
-  <div class="box" id="box6"></div>
-  <div class="box" id="box7"></div>
 
-  <script>
-    let activeBox = null;
-
-    function showBox(boxId) {
-      const newBox = document.getElementById(boxId);
-
-      // If there's an active box, make it exit
-      if (activeBox && activeBox !== newBox) {
-        activeBox.classList.remove('visible', 'filled');
-        activeBox.classList.add('exiting');
-
-        // Remove the exiting class after the animation
-        setTimeout(() => {
-          activeBox.classList.remove('exiting');
-        }, 1000);
-      }
-
-      // Show the new box
-      newBox.classList.add('visible', 'filled');
-      activeBox = newBox;
-
-      // Change the box to a stroke after it has fully moved down
-      setTimeout(() => {
-        newBox.classList.remove('filled');
-      }, 1000); // Match the transition duration
-    }
+  <script src="Assets/js/script.js">
   </script>
 </body>
 </html>
